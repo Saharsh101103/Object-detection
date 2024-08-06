@@ -1,0 +1,40 @@
+# Python specific
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info
+dist
+build
+*.log
+
+# Virtual Environment
+myenv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# TensorFlow checkpoints and saved models
+checkpoint
+ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8/saved_model/
+ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8/checkpoint
+
+# TensorFlow event files
+events.out.tfevents.*
+
+# TFRecord files
+*.tfrecord
+
+# Flask specific
+instance/
+.venv/
+.env
+
+# Other
+*.bak
+*.swp
+*.tmp
