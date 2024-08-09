@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from object_detection import load_model, detect_object, load_class_names
+from api.object_detection import load_model, detect_object, load_class_names
 
 app = Flask(__name__)
 model = load_model()
