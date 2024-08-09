@@ -2,6 +2,9 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 import io
+import requests
+from PIL import Image
+from io import BytesIO
 
 def load_model():
     model = tf.saved_model.load("ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8/saved_model")
@@ -12,8 +15,12 @@ def load_class_names(file_path):
         class_names = f.read().strip().split('\n')
     return class_names
 
-def detect_object(image, model, class_names):
-    image = Image.open(image)
+def detect_object(image_url, model, class_names):
+    # Download the image from the URL
+    response = requests.get(image_url)
+    image_data = response.content
+     # Load the image from the downloaded data
+    image = Image.open(BytesIO(image_data))
     image_np = np.array(image)
     input_tensor = tf.convert_to_tensor(image_np)
     input_tensor = input_tensor[tf.newaxis, ...]
