@@ -17,6 +17,6 @@ def detect():
     return jsonify(detections)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 #test
