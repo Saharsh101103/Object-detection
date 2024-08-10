@@ -3,11 +3,7 @@
   "builds": [
     {
       "src": "api/*.py",
-      "use": "@vercel/python",
-      "cache": {
-        "key": "${FILE_PATH}",
-        "paths": ["node_modules"]
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
