@@ -1,3 +1,4 @@
+from flask_cors import CORS
 import tensorflow as tf
 import numpy as np
 import cv2
@@ -5,6 +6,7 @@ import requests
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+CORS(app)  # This will enable CORS for all routes
 
 # Load class names and model
 class_names = [line.strip() for line in open('coco_classes.txt')]
@@ -47,14 +49,14 @@ def detect_object(image_url):
         results = []
         for i in range(len(detection_scores)):
             if detection_scores[i] >= threshold:
-                box = detection_boxes[i].tolist()
+                # box = detection_boxes[i].tolist()
                 class_name = int(detection_classes[i])
-                score = float(detection_scores[i])
+                # score = float(detection_scores[i])
                 results.append({
-                    'box': box,
-                    'class': class_name,
-                    'class_name': class_names[class_name],
-                    'score': score
+                    # 'box': box,
+                    # 'class': class_name
+                    'class_name': class_names[class_name]
+                    # 'score': score
                 })
         return results
     except Exception as e:
@@ -68,6 +70,8 @@ def detect():
         image_url = data['image_url']
         detections = detect_object(image_url)
         return jsonify(detections)
+
+   
     except Exception as e:
         return str(e)
 
